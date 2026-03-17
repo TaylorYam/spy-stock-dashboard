@@ -32,6 +32,7 @@ if os.path.exists(_bundled):
 else:
     plt.rcParams["font.sans-serif"] = ["Microsoft JhengHei", "SimHei", "Arial"]
 plt.rcParams["axes.unicode_minus"] = False
+plt.rcParams["font.weight"] = "bold"
 plt.rcParams["savefig.dpi"] = 300
 import streamlit as st
 
