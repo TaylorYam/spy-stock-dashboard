@@ -1,0 +1,21 @@
+{
+  "equity": 1352666.0,
+  "holdings": [
+    {
+      "ticker": "DG",
+      "qty": 4239
+    },
+    {
+      "ticker": "MU",
+      "qty": 644
+    },
+    {
+      "ticker": "WDC",
+      "qty": 815
+    },
+    {
+      "ticker": "ALB",
+      "qty": 1824
+    }
+  ]
+}
