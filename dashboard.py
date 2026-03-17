@@ -849,7 +849,7 @@ with tab1:
             user_holdings_dict = {}
             for _, row in edited_holdings.iterrows():
                 tk = row["股票代號"].strip().upper() if isinstance(row["股票代號"], str) else ""
-                qty = int(row["股數"]) if row["股數"] else 0
+                qty = int(row["股數"]) if pd.notna(row["股數"]) and row["股數"] else 0
                 if tk:
                     user_holdings_dict[tk] = qty
 
