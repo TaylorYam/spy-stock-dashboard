@@ -23,8 +23,11 @@ import matplotlib.ticker as mticker
 from matplotlib import font_manager as fm
 
 # 載入中文字體（雲端 Linux 用 Noto Sans CJK，本地用 Microsoft JhengHei）
-# 清除 matplotlib 字體快取，確保新安裝的字體被偵測到
-fm._load_fontmanager(try_read_cache=False)
+import glob as _glob
+_noto_paths = _glob.glob("/usr/share/fonts/**/NotoSansCJK*", recursive=True)
+for _fp in _noto_paths:
+    fm.fontManager.addfont(_fp)
+# 重建可用字體清單
 _cjk_candidates = ["Microsoft JhengHei", "SimHei", "Noto Sans CJK TC", "Noto Sans TC"]
 _available = {f.name for f in fm.fontManager.ttflist}
 _cjk_found = [f for f in _cjk_candidates if f in _available]
