@@ -314,7 +314,7 @@ def _show_performance(equity_df, spy_df):
     ax2.grid(alpha=0.3)
 
     plt.tight_layout()
-    st.pyplot(fig)
+    st.pyplot(fig, use_container_width=False)
     plt.close(fig)
 
     # ── Monthly returns ──
@@ -625,7 +625,7 @@ def _show_allocation_chart(trades, equity):
     ax.spines["left"].set_color("#ddd")
     ax.grid(axis="x", linestyle="-", alpha=0.15, color="#999")
     plt.tight_layout()
-    st.pyplot(fig)
+    st.pyplot(fig, use_container_width=False)
     plt.close(fig)
 
 
@@ -679,7 +679,7 @@ def _show_momentum_ranking(rebal_rankings, held_tickers, new_buy_tickers):
     ax.spines["right"].set_visible(False)
     ax.set_xlim(0, max(scores) * 1.25 if scores else 1)
     plt.tight_layout()
-    st.pyplot(fig)
+    st.pyplot(fig, use_container_width=False)
     plt.close(fig)
 
 
