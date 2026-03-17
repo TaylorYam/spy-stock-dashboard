@@ -147,7 +147,7 @@ def _save_user_state(equity, holdings_df):
         tk = row.get("股票代號", "")
         qty = row.get("股數", 0)
         if isinstance(tk, str) and tk.strip():
-            rows.append({"ticker": tk.strip().upper(), "qty": int(qty) if qty else 0})
+            rows.append({"ticker": tk.strip().upper(), "qty": int(qty) if pd.notna(qty) and qty else 0})
     state = {"equity": equity, "holdings": rows}
     with open(USER_STATE_JSON, "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=2)
