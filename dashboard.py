@@ -637,7 +637,8 @@ def _show_momentum_ranking(rebal_rankings, held_tickers, new_buy_tickers):
         return
     latest_rank = rebal_rankings.iloc[-1]
     rank_date = str(latest_rank["Date"])[:10]
-    st.markdown(f"#### 市場動能排名 — 前 20 名")
+    st.markdown("#### S&P 500 成分股動能強度排名 - 前20名")
+    st.caption("(數字為趨勢強度)")
 
     tickers = []
     scores = []
@@ -669,14 +670,14 @@ def _show_momentum_ranking(rebal_rankings, held_tickers, new_buy_tickers):
     y = np.arange(n_tk)
     ax.barh(y, scores, color=colors, height=0.4)
     ax.set_yticks(y)
-    ax.set_yticklabels(tickers, fontsize=15, fontweight="bold")
+    ax.set_yticklabels(tickers, fontsize=15, fontweight="bold", color="#222")
     ax.invert_yaxis()
     for i, (s, lbl) in enumerate(zip(scores, labels)):
         txt = f"{s:.2f}"
         if lbl:
             txt += f"　{lbl}"
-        ax.text(s + 0.02, i, txt, va="center", fontsize=14,
-                color="#2E7D32" if lbl else "#666")
+        ax.text(s + 0.02, i, txt, va="center", fontsize=14, fontweight="bold",
+                color="#1B5E20" if lbl else "#333")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.set_xlim(0, max(scores) * 1.25 if scores else 1)
