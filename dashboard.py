@@ -22,16 +22,15 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 from matplotlib import font_manager as fm
 
-# 載入中文字體（雲端 Linux 用 Noto Sans CJK，本地用 Microsoft JhengHei）
-import glob as _glob
-_noto_paths = _glob.glob("/usr/share/fonts/**/NotoSansCJK*", recursive=True)
-for _fp in _noto_paths:
-    fm.fontManager.addfont(_fp)
-# 重建可用字體清單
-_cjk_candidates = ["Microsoft JhengHei", "SimHei", "Noto Sans CJK TC", "Noto Sans TC"]
-_available = {f.name for f in fm.fontManager.ttflist}
-_cjk_found = [f for f in _cjk_candidates if f in _available]
-plt.rcParams["font.sans-serif"] = _cjk_found + ["DejaVu Sans", "Arial"]
+# 載入中文字體
+_FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts")
+_bundled = os.path.join(_FONT_DIR, "NotoSansTC-Medium.ttf")
+if os.path.exists(_bundled):
+    fm.fontManager.addfont(_bundled)
+    _font_name = fm.FontProperties(fname=_bundled).get_name()
+    plt.rcParams["font.sans-serif"] = [_font_name]
+else:
+    plt.rcParams["font.sans-serif"] = ["Microsoft JhengHei", "SimHei", "Arial"]
 plt.rcParams["axes.unicode_minus"] = False
 plt.rcParams["savefig.dpi"] = 300
 import streamlit as st
