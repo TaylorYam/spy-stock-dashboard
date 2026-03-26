@@ -905,11 +905,9 @@ with tab1:
 
     elif holdings_data is not None:
         # File exists but holdings list is empty → all-cash (Bear market)
-        cash = holdings_data.get("cash", 0)
-        total = holdings_data.get("total_equity", cash)
         st.info(
             f"📦 目前策略持有全現金（熊市防禦）。\n\n"
-            f"現金：${cash:,.0f}　／　總權益：${total:,.0f}"
+            f"總權益（現金）：${equity_input:,.0f}"
         )
         _show_momentum_ranking(rebal_rankings, set(), set())
     else:
