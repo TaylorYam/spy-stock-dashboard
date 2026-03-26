@@ -903,6 +903,15 @@ with tab1:
 
         _show_momentum_ranking(rebal_rankings, held_set | target_set, new_buy_set)
 
+    elif holdings_data is not None:
+        # File exists but holdings list is empty → all-cash (Bear market)
+        cash = holdings_data.get("cash", 0)
+        total = holdings_data.get("total_equity", cash)
+        st.info(
+            f"📦 目前策略持有全現金（熊市防禦）。\n\n"
+            f"現金：${cash:,.0f}　／　總權益：${total:,.0f}"
+        )
+        _show_momentum_ranking(rebal_rankings, set(), set())
     else:
         st.warning("找不到持股資料。請先執行回測產生 `current_holdings_final_compound.json`。")
 
